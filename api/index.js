@@ -3,7 +3,7 @@ const path = require('path')
 const app = express()
 const port = +process.env.PORT || 3000
 //static
-app.use (express.static('../static'))
+app.use (express.static('./static'))
 app.use(express.urlencoded({
       extended: false
   }),
