@@ -60,7 +60,7 @@ class Users {
         gender, userDOB, emailAdd, userPass,
         profileLUrl
         FROM Users
-        WHERE emailAdd = ${emailAdd};
+        WHERE emailAdd = '${emailAdd}';
         `
 
         db.query(query, async (err, result) => {
@@ -133,6 +133,23 @@ class Users {
     }
 
     UpdateUser(req, res) {
+        const data = req.body 
+        if (data.userPass){
+            data.userPass =
+            hashSync(data.userPass,15)
+        }
+        const query =`
+        UPDATE Users
+        SET ?
+        WHERE userID
+        `
+
+        db.query(query,
+            [data, req.param.id],
+            (err)=> {
+                
+            }
+            )
         
     }
 }
